@@ -67,5 +67,4 @@
     "editor.fontSize": 13,
     "workbench.colorTheme": "Default High Contrast",
     "objectscript.ignoreInstallServerManager": true,
-    "editor.tabSize": 5,
 }
