@@ -1,17 +1,21 @@
   # PROMPT
 function prompt {
-  $loc = Split-Path -leaf -path (pwd)
+  $loc = (pwd).ToString()
+  $locarr = $loc.split('\')
+  if ($locarr[1] -and ($locarr.Length -gt 2)) { # not in root (C:\) and > 2 folders
+    $loc = $loc.split('\')[-2..-1] -join '\'
+    $loc = "..\" + $loc + '\'
+  }
 
-  $git = ""
-  if (Test-Path .git) {
-    $git = git branch --show-current
+  $git = $(git branch --show-current 2>$null)
+  if ($git) {
     $git = "($git)"
   }
 
   $p = $('>' * ($nestedPromptLevel + 1))
   
   Write-Host "PSC " -nonewline -foregroundcolor Green
-  Write-Host "..\$loc\ " -nonewline -foregroundcolor Yellow
+  Write-Host "$loc " -nonewline -foregroundcolor Yellow
   Write-Host "$git" -nonewline -foregroundcolor Cyan
   Write-Host " >> " -nonewline -foregroundcolor Green
   return " "
@@ -25,6 +29,6 @@ function prompt {
 Set-PSReadLineOption -Colors @{ "Parameter"="Blue" }
 
   # ALIASES
-New-Alias grep sls
-New-Alias touch New-Item
-New-Alias gh Get-Help
+Set-Alias grep sls
+Set-Alias touch New-Item
+Set-Alias gh Get-Help
