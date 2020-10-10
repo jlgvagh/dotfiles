@@ -16,7 +16,11 @@ function prompt {
   
   Write-Host "PSC " -nonewline -foregroundcolor Green
   Write-Host "$loc " -nonewline -foregroundcolor Yellow
-  Write-Host "$git" -nonewline -foregroundcolor Cyan
+  if ( (git status --porcelain) ) {
+    Write-Host "$git" -nonewline -foregroundcolor Red
+  } else {
+    Write-Host "$git" -nonewline -foregroundcolor Cyan
+  }
   Write-Host " >> " -nonewline -foregroundcolor Green
   return " "
 }
