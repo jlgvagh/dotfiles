@@ -67,5 +67,5 @@
     "editor.fontSize": 13,
     "workbench.colorTheme": "Default High Contrast",
     "objectscript.ignoreInstallServerManager": true,
-    "extensions.ignoreRecommendations": true,
+    "extensions.ignoreRecommendations": true
 }
