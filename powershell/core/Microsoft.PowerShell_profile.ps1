@@ -25,7 +25,7 @@ function prompt {
   return " "
 }
 
-  # prevent color problem in VSCode
+  # prevent color problem in VSCode.
 [console]::ResetColor()
 #Remove-Module PSReadline
 
